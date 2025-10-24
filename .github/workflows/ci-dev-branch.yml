@@ -1,0 +1,13 @@
+name: Catalogue CI pipeline dev branches
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "*"
+      - "!main"
+run-name: ${{ github.sha }}-${{ github.event.head_commit.message }}
+jobs:
+  workflow_call_with_inputs:
+    uses: dsaniset23/roboshop-actions/.github/workflows/ci-dev-branch.yml@main
+    with:
+      componentName: catalogue
