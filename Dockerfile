@@ -2,7 +2,7 @@ FROM        redhat/ubi9
 RUN         dnf disable nodejs -y && \
             dnf enable nodejs:20 && \
             dnf install nodejs \
-RUN         dnf clear all
+RUN         dnf clean all
 WORKDIR     /app
 RUN         useradd -d /app roboshop && \
             chown roboshop:roboshop /app
