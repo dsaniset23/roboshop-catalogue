@@ -7,6 +7,6 @@ WORKDIR     /app
 RUN         useradd -d /app roboshop && \
             chown roboshop:roboshop /app
 USER        roboshop
-COPY        server.js package.js ./
+COPY        server.js package.json ./
 RUN         npm install
 CMD         ["node", "/app/server.js"]
