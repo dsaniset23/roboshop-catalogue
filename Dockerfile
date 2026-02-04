@@ -1,12 +1,11 @@
 FROM        redhat/ubi9
-RUN         dnf disable nodejs -y && \
-            dnf enable nodejs:20 && \
-            dnf install nodejs
+RUN         dnf module disable nodejs -y && \
+            dnf module enable nodejs:20 -y && \
+            dnf install nodejs -y
 RUN         dnf clean all
 WORKDIR     /app
-RUN         useradd -d /app roboshop && \
-            chown roboshop:roboshop /app
+RUN         useradd -d /app roboshop && chown roboshop:roboshop /app
 USER        roboshop
-COPY        server.js package.json ./
+COPY        server.js package.json /app/
 RUN         npm install
-CMD         ["node", "/app/server.js"]
+ENTRYPOINT         ["node", "/app/server.js"]
